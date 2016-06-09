@@ -8,7 +8,15 @@ module.exports = {
     res.status(200).json(jared.location);
   },
   getJobs: function (req, res, next) {
-    res.status(200).json(jared.jobs);
+    if (!req.query.sort) {
+      return res.status(200).json(jared.jobs);
+    } else if (req.query.sort === "desc") {
+      return res.status(200).json(jared.jobs.sort());
+    } else if (req.query.sort === "asc") {
+      return res.status(200).json(jared.jobs.sort().reverse());
+    } else {
+      res.status(200).json(jared.jobs);
+    }
   },
   getLastJob: function (req, res, next) {
     var latest = jared.jobs[jared.jobs.length - 1];
