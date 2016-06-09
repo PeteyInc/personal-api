@@ -1,5 +1,5 @@
 module.exports = {
-  addHeaders: function(res, req, next) {
+  addHeaders: function(req, res, next) {
     res.status(200).set({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
